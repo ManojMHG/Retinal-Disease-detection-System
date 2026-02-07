@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Prediction History{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+  <div class="d-flex align-items-center mb-4">
+    <h3 class="mb-0">Your Prediction History</h3>
+  </div>
+
+  {% if predictions and predictions|length > 0 %}
+  <div class="table-responsive">
+    <table class="table table-striped align-middle">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Image</th>
+          <th scope="col">Patent Name</th>
+          <th scope="col">Label</th>
+          <th scope="col">Confidence</th>
+          <th scope="col">Date (UTC)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for p in predictions %}
+        <tr>
+          <th scope="row">{{ loop.index }}</th>
+          <td>
+            {% if p.filename %}
+              <a href="{{ url_for('static', filename='uploads/' ~ p.filename) }}" target="_blank" rel="noopener">
+                {{ p.filename }}
+              </a>
+            {% else %}
+              —
+            {% endif %}
+          </td>
+          <td><span class="badge bg-primary">{{ p.pname }}</span></td>
+          <td><span class="badge bg-primary">{{ p.label }}</span></td>
+          <td>{{ '{:.2f}%'.format(p.confidence * 100 if p.confidence <= 1 else p.confidence) }}</td>
+          <td>{{ p.date.strftime('%Y-%m-%d %H:%M:%S') if p.date else '—' }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+    <div class="alert alert-info" role="alert">
+      No predictions yet. Go to <a href="{{ url_for('predict') }}">Predict</a> to upload an image.
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="upload-container">
+    <div class="upload-card">
+        <div class="upload-header">
+            <h2>Upload Multi-Retinal  Image</h2>
+            <p class="text-muted">Upload an image for Multi-Retinal disease prediction</p>
+        </div>
+        
+        <form method="POST" enctype="multipart/form-data" class="upload-form">
+            <div class="mb-4">
+                <label class="form-label">Enter Patient Name</label>
+                <input type="text" name="t1" class="form-control"  required>
+                <div class="form-text">Enter the patient name</div>
+            </div>
+            <div class="mb-4">
+                <label class="form-label">Enter Patient Email Id</label>
+                <input type="email" name="t2" class="form-control"  required>
+                <div class="form-text">Enter the patient Email Id</div>
+            </div>
+            <div class="mb-4">
+                <label class="form-label">Select  Image</label>
+                <input type="file" name="file" class="form-control" accept="image/*" required>
+                <div class="form-text">Supported formats: JPG, PNG, JPEG</div>
+            </div>
+            
+            <div class="image-preview mb-4" id="imagePreview">
+                <div class="preview-text">Image preview will appear here</div>
+                <img class="preview-image" src="" alt="Preview" style="display: none;">
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-upload">Analyze Image</button>
+        </form>
+    </div>
+</div>
+
+<style>
+    .upload-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 1;
+        padding: 2rem 0;
+    }
+    
+    .upload-card {
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 500px;
+        padding: 2rem;
+    }
+    
+    .upload-header {
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+    
+    .upload-header h2 {
+        color: #2c3e50;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+    
+    .form-control {
+        border-radius: 8px;
+        padding: 0.75rem 1rem;
+        border: 1px solid #ddd;
+        margin-bottom: 0.5rem;
+    }
+    
+    .form-control:focus {
+        border-color: #4a90e2;
+        box-shadow: 0 0 0 0.2rem rgba(74, 144, 226, 0.25);
+    }
+    
+    .btn-upload {
+        background-color: #3498db;
+        border: none;
+        border-radius: 8px;
+        padding: 0.75rem;
+        font-weight: 600;
+        width: 100%;
+        margin-top: 0.5rem;
+    }
+    
+    .btn-upload:hover {
+        background-color: #2980b9;
+    }
+    
+    .image-preview {
+        width: 100%;
+        height: 250px;
+        border: 2px dashed #ddd;
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        background-color: #f8f9fa;
+    }
+    
+    .preview-text {
+        color: #6c757d;
+        font-size: 1rem;
+    }
+    
+    .preview-image {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+    
+    .upload-form {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .form-text {
+        font-size: 0.85rem;
+        color: #6c757d;
+        margin-top: 0.25rem;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const fileInput = document.querySelector('input[type="file"]');
+        const previewContainer = document.getElementById('imagePreview');
+        const previewImage = previewContainer.querySelector('.preview-image');
+        const previewText = previewContainer.querySelector('.preview-text');
+        
+        fileInput.addEventListener('change', function() {
+            const file = this.files[0];
+            
+            if (file) {
+                const reader = new FileReader();
+                
+                previewText.style.display = 'none';
+                previewImage.style.display = 'block';
+                
+                reader.addEventListener('load', function() {
+                    previewImage.setAttribute('src', this.result);
+                });
+                
+                reader.readAsDataURL(file);
+            } else {
+                previewText.style.display = 'block';
+                previewImage.style.display = 'none';
+                previewImage.setAttribute('src', '');
+            }
+        });
+    });
+</script>
+{% endblock %}

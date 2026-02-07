@@ -1,0 +1,7 @@
+pillow
+pandas
+seaborn
+scikit_learn==1.6.1
+opencv_contrib_python
+tensorflow==2.19.0
+keras==3.10.0

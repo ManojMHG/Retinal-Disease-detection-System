@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi Retinal Disease Predicton Using Deep Learning</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f0f8ff 0%, #e6f7ff 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: #1a75ff !important;
+        }
+        .hero-section {
+            padding: 5rem 0;
+            text-align: center;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23f8f9fa"/><path d="M0 50 L100 50 M50 0 L50 100" stroke="%23e9ecef" stroke-width="1"/></svg>');
+            background-size: 30px 30px;
+        }
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #1a75ff;
+        }
+        .feature-card {
+            transition: transform 0.3s;
+            height: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.1);
+        }
+        .footer {
+            margin-top: auto;
+            padding: 1.5rem 0;
+            background-color: #f8f9fa;
+        }
+        .btn-primary {
+            background-color: #1a75ff;
+            border-color: #1a75ff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+        .hero-badge {
+            font-size: 1rem;
+            font-weight: 500;
+            background-color: #e6f2ff;
+            color: #1a75ff;
+        }
+        .cta-section {
+            background-color: #f0f8ff;
+            border-radius: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-Multi-Retinals me-2"></i>RetinaScan AI
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ url_for('index') }}">Home</a>
+                    </li>
+                    
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-primary ms-2" href="{{ url_for('register') }}">Register</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <span class="badge hero-badge px-3 py-2 mb-3">Powered by Deep Learning</span>
+            <h1 class="display-4 fw-bold mb-4">Multi-Retinal Disease Detection Using AI</h1>
+            <p class="lead mb-5">Early detection of Multi-Retinal disease through advanced deep learning algorithms with 99% accuracy.</p>
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <a href="#" class="btn btn-primary btn-lg px-4 gap-3">Get Started</a>
+                <a href="#" class="btn btn-outline-secondary btn-lg px-4">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-4">
+                <!-- Feature 1 -->
+                <div class="col-md-4">
+                    <div class="card feature-card p-4">
+                        <div class="feature-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3>Deep Learning Analysis</h3>
+                        <p>Our advanced neural networks analyze medical imagery with precision unmatched by traditional methods.</p>
+                    </div>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="col-md-4">
+                    <div class="card feature-card p-4">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Accurate Diagnosis</h3>
+                        <p>Early detection of Multi-Retinal disease with 95% accuracy, helping physicians make better treatment decisions.</p>
+                    </div>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="col-md-4">
+                    <div class="card feature-card p-4">
+                        <div class="feature-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <h3>Data Protection</h3>
+                        <p>Patient data is encrypted and protected following HIPAA and other medical privacy regulations.</p>
+                    </div>
+                </div>
+                
+                <!-- Feature 4 -->
+                <div class="col-md-4">
+                    <div class="card feature-card p-4">
+                        <div class="feature-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3>Fast Results</h3>
+                        <p>Get analysis results in minutes instead of days, enabling quicker treatment planning.</p>
+                    </div>
+                </div>
+                
+                <!-- Feature 5 -->
+                <div class="col-md-4">
+                    <div class="card feature-card p-4">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Progress Tracking</h3>
+                        <p>Monitor Multi-Retinal health over time with detailed reports and trend analysis.</p>
+                    </div>
+                </div>
+                
+                <!-- Feature 6 -->
+                <div class="col-md-4">
+                    <div class="card feature-card p-4">
+                        <div class="feature-icon">
+                            <i class="fas fa-user-md"></i>
+                        </div>
+                        <h3>Clinician Support</h3>
+                        <p>Our system assists healthcare professionals, not replaces them, improving diagnostic confidence.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="cta-section p-5 text-center">
+                        <h2 class="mb-4">Ready to Get Started?</h2>
+                        <p class="lead mb-4">Register now to start using our advanced Multi-Retinal disease detection system</p>
+                        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                            <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg px-4 gap-3">Register Now</a>
+                            <a href="{{ url_for('login') }}" class="btn btn-outline-secondary btn-lg px-4">Login</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer text-center">
+        <div class="container">
+            <p class="mb-0">© 2025 RetinaScan AI. All rights reserved.</p>
+            <p class="text-muted small mt-2">This system is intended for use by medical professionals only.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
